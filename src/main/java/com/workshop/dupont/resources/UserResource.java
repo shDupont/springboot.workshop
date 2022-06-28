@@ -1,7 +1,7 @@
 package com.workshop.dupont.resources;
 
-import com.workshop.dupont.entities.Users;
-import com.workshop.dupont.services.UsersServices;
+import com.workshop.dupont.entities.User;
+import com.workshop.dupont.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,38 +12,38 @@ import java.util.List;
 
 @RestController
 @RequestMapping( value = "/users" )
-public class UsersResource {
+public class UserResource {
     @Autowired
-    private UsersServices usersServices;
+    private UserServices userServices;
 
     @GetMapping
-    public ResponseEntity<List<Users>> findAll(){
-        List<Users> list = usersServices.findAll();
+    public ResponseEntity<List<User>> findAll(){
+        List<User> list = userServices.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Users> findById(@PathVariable Long id){
-        Users obj = usersServices.findById(id);
+    public ResponseEntity<User> findById(@PathVariable Long id){
+        User obj = userServices.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Users> insert(@RequestBody Users obj){
-        obj = usersServices.insert(obj);
+    public ResponseEntity<User> insert(@RequestBody User obj){
+        obj = userServices.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        usersServices.delete(id);
+        userServices.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Users> update(@PathVariable Long id, @RequestBody Users obj){
-        obj = usersServices.update(id, obj);
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+        obj = userServices.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
 }

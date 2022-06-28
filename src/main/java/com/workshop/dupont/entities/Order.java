@@ -2,7 +2,6 @@ package com.workshop.dupont.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.workshop.dupont.entities.enums.OrderStatus;
-import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +25,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Users client;
+    private User client;
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
@@ -56,7 +55,7 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(Long id, Instant moment, OrderStatus orderStatus, Users client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
         setOrderStatus(orderStatus);
@@ -89,11 +88,11 @@ public class Order implements Serializable {
         }
     }
 
-    public Users getClient() {
+    public User getClient() {
         return client;
     }
 
-    public void setClient(Users client) {
+    public void setClient(User client) {
         this.client = client;
     }
 
