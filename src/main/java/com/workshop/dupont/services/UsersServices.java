@@ -21,4 +21,12 @@ public class UsersServices {
         Optional<Users> obj = usersRepository.findById(id);
         return obj.get();
     }
+
+    public Users insert(Users obj){
+        return usersRepository.save(obj);
+    }
+
+    public void delete(Long id){
+        usersRepository.deleteById(id);
+    }
 }
