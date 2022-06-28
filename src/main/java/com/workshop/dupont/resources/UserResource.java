@@ -1,6 +1,6 @@
 package com.workshop.dupont.resources;
 
-import com.workshop.dupont.entities.User;
+import com.workshop.dupont.entities.Users;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
 
     @GetMapping
-    public ResponseEntity<User> findAll(){
-        User user = new User(1L, "Maria", "maria@gmail.com", "999999999", "12345");
+    public ResponseEntity<Users> findAll(){
+        Users user = new Users(1L, "Maria", "maria@gmail.com", "999999999", "12345");
         return ResponseEntity.ok().body(user);
     }
 }
